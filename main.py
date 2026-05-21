@@ -1,6 +1,7 @@
 import requests
 import re
 import os
+from datetime import datetime
 
 # 你的4个M3U链接列表
 M3U_URLS = [
@@ -26,7 +27,6 @@ def get_m3u_content(url):
 
 def parse_m3u(content):
     """解析M3U，提取频道名和播放地址"""
-    # 匹配 #EXTINF:-1,tvg-name=频道名 后紧跟播放地址
     pattern = re.compile(r'#EXTINF:-1.*?,(.*?)\n(http.*?)\n')
     matches = pattern.findall(content, re.S)
     for name, url in matches:
@@ -37,13 +37,15 @@ def parse_m3u(content):
             live_list.append(f"{name},{url}")
 
 def save_to_txt():
-    """保存整理到live.txt"""
+    """保存整理到live.txt，开头带更新日期,#genre#"""
+    # 获取当前实际更新时间
+    now_time = datetime.now().strftime("%Y-%m-%d %H:%M")
     with open("live.txt", "w", encoding="utf-8") as f:
-        f.write("# 自动整理直播源 | 每小时GitHub自动更新\n")
-        f.write("# 格式：频道名,播放地址\n\n")
+        # 抬头格式：iptv 日期时间,#genre#
+        f.write(f"iptv {now_time},#genre#\n")
         for item in live_list:
             f.write(item + "\n")
-    print(f"已导出 {len(live_list)} 条直播源到 live.txt")
+    print(f"已导出 {len(live_list)} 条直播源，更新时间：{now_time}")
 
 if __name__ == "__main__":
     for url in M3U_URLS:
