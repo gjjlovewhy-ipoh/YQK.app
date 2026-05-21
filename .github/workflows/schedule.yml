@@ -4,8 +4,10 @@ on:
   push:
     branches: [ main ]
   schedule:
-    # 每小时执行一次 UTC时间 0点、1点...23点
     - cron: '0 * * * *'
+
+permissions:
+  contents: write   # 关键：给Action读写仓库权限
 
 jobs:
   run:
@@ -13,6 +15,11 @@ jobs:
     steps:
       - name: 拉取代码
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: 配置Git安全目录
+        run: git config --global safe.directory "$GITHUB_WORKSPACE"
 
       - name: 安装Python
         uses: actions/setup-python@v5
@@ -25,10 +32,10 @@ jobs:
       - name: 运行爬取脚本
         run: python main.py
 
-      - name: 提交更新文件
+      - name: 提交并推送更新
         run: |
-          git config --global user.name "GitHub Action"
-          git config --global user.email "action@github.com"
-          git add live.txt
-          git commit -m "自动更新直播源 $(date +'%Y-%m-%d %H:%M')"
+          git config --global user.name "AutoBot"
+          git config --global user.email "bot@github.com"
+          git add .
+          git commit -m "Auto update live.txt $(date +'%Y-%m-%d %H:%M')" || echo "无文件更新，跳过提交"
           git push
