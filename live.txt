@@ -1,6 +1,4 @@
-# 自动整理直播源 | 每小时GitHub自动更新
-# 格式：频道名,播放地址
-
+iptv 2026-05-21 04:32,#genre#
 ASTRO CRICKET,http://safetv.vip:8080/live/8gULQeqH3I/kbuahRdUJV/18629.ts
 ASTRO PREMIER LEAGUE,http://wanjiatv.net/ydmt/smrt.php?playurl=http://66.90.99.154:8278/go_assp1/playlist.m3u8
 ASTRO PREMIER LEAGUE 2,http://wanjiatv.net/ydmt/smrt.php?playurl=http://66.90.99.154:8278/go_assp2/playlist.m3u8
