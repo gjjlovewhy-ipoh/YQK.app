@@ -1,4 +1,4 @@
-iptv 2026-05-28 18:11,#genre#
+iptv 2026-05-28 21:06,#genre#
 ASTRO CRICKET,http://safetv.vip:8080/live/8gULQeqH3I/kbuahRdUJV/18629.ts
 ASTRO PREMIER LEAGUE,http://wanjiatv.net/ydmt/smrt.php?playurl=http://66.90.99.154:8278/go_assp1/playlist.m3u8
 ASTRO PREMIER LEAGUE 2,http://wanjiatv.net/ydmt/smrt.php?playurl=http://66.90.99.154:8278/go_assp2/playlist.m3u8
